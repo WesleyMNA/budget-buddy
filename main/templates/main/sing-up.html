@@ -1,9 +1,9 @@
 {% extends 'main/base.html' %}
 
-{% block title %}Login{% endblock %}
+{% block title %}Sing Up{% endblock %}
 
 {% block content %}
-<form action="/sing-up" method="post">
+<form action="/singup" method="post">
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Enter">

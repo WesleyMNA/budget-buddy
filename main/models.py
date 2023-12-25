@@ -56,7 +56,6 @@ class Revenue(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     description = models.TextField()
     category = models.IntegerField(
-        max_length=1,
         null=False,
         choices=Category
     )
