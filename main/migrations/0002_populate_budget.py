@@ -4,11 +4,11 @@ from django.db import migrations
 def populate_table(apps, schema_editor):
     table = apps.get_model('main', 'Budget')
     my_data_dict = {
-        'Fixed',
-        'Goal',
-        'Investment',
-        'Knowledge',
-        'Pleasures',
+        'F',
+        'G',
+        'I',
+        'K',
+        'P',
     }
 
     for value in my_data_dict:

@@ -11,7 +11,7 @@ class Budget(models.Model):
     }
 
     category = models.CharField(
-        max_length=10,
+        max_length=1,
         choices=CATEGORY_CHOICES,
         primary_key=True
     )
@@ -27,9 +27,7 @@ class Expenses(models.Model):
         null=False,
         unique=True,
     )
-    value = models.IntegerField(
-        null=False
-    )
+    value = models.IntegerField(null=False)
     date = models.DateField(null=False)
     created_at = models.DateTimeField(auto_now_add=True)
     description = models.TextField()
@@ -39,5 +37,24 @@ class Expenses(models.Model):
     )
 
 
-# class Revenue(models.Model):
-#     pass
+class Revenue(models.Model):
+    class Category(models.IntegerChoices):
+        WAGE = 1
+        ADVANCE = 2
+        DIVIDEND = 3
+        OTHER = 4
+
+    title = models.CharField(
+        max_length=100,
+        null=False,
+        unique=True,
+    )
+    value = models.IntegerField(null=False)
+    date = models.DateField(null=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    description = models.TextField()
+    category = models.IntegerField(
+        max_length=1,
+        null=False,
+        choices=Category
+    )
