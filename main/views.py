@@ -10,14 +10,13 @@ from .forms import LoginForm, SingUpForm
 
 @login_required(login_url='/login')
 def index(request: WSGIRequest):
-    # logout(request)
     return render(
         request,
         'main/index.html'
     )
 
 
-def login_views(request: WSGIRequest):
+def login_view(request: WSGIRequest):
     if request.method == 'POST':
         form = LoginForm(request.POST)
 
@@ -41,6 +40,11 @@ def login_views(request: WSGIRequest):
             'form': form
         }
     )
+
+
+def logout_view(request: WSGIRequest):
+    logout(request)
+    return redirect('login')
 
 
 def sing_up(request: WSGIRequest):

@@ -45,12 +45,16 @@ class SingUpForm(forms.Form):
         if exists:
             raise forms.ValidationError('username already exists')
 
+        return username
+
     def clean_email(self):
         email = self.cleaned_data['email']
         exists = User.objects.filter(email=email).exists()
 
         if exists:
             raise forms.ValidationError('email already exists')
+
+        return email
 
     def clean(self):
         cleaned_data = super().clean()
