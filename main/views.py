@@ -6,13 +6,28 @@ from django.core.handlers.wsgi import WSGIRequest
 from django.shortcuts import render, redirect
 
 from .forms import LoginForm, SingUpForm
+from .models import Budget, Category
 
 
 @login_required(login_url='/login')
 def index(request: WSGIRequest):
+    user = request.user
+    budgets = Budget.objects.filter(user=user)
+
+    if len(budgets) == 0:
+        categories = Category.objects.all()
+
+        for category in categories:
+            Budget.objects.create(category=category, user=user)
+
+        budgets = Budget.objects.filter(user=user)
+
     return render(
         request,
-        'main/index.html'
+        'main/index.html',
+        context={
+            'budgets': budgets
+        }
     )
 
 
