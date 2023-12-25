@@ -21,7 +21,7 @@ class Budget(models.Model):
     )
 
 
-class Expenses(models.Model):
+class Expense(models.Model):
     title = models.CharField(
         max_length=100,
         null=False,
