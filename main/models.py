@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 
@@ -33,8 +34,9 @@ class Expense(models.Model):
     description = models.TextField()
     category = models.ForeignKey(
         Budget,
-        on_delete=models.DO_NOTHING
+        on_delete=models.CASCADE
     )
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
 class Revenue(models.Model):
@@ -58,3 +60,4 @@ class Revenue(models.Model):
         null=False,
         choices=Category
     )
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
