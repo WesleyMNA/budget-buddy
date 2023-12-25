@@ -2,7 +2,7 @@ from django.db import migrations
 
 
 def populate_table(apps, schema_editor):
-    table = apps.get_model('main', 'Budget')
+    table = apps.get_model('main', 'Category')
     my_data_dict = {
         'F',
         'G',

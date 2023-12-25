@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.db import models
 
 
-class Budget(models.Model):
+class Category(models.Model):
     CATEGORY_CHOICES = {
         'F': 'Fixed',
         'G': 'Goal',
@@ -16,10 +16,15 @@ class Budget(models.Model):
         choices=CATEGORY_CHOICES,
         primary_key=True
     )
+
+
+class Budget(models.Model):
     percentage = models.IntegerField(
         default=20,
         null=False
     )
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
 class Expense(models.Model):
@@ -33,7 +38,7 @@ class Expense(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     description = models.TextField()
     category = models.ForeignKey(
-        Budget,
+        Category,
         on_delete=models.CASCADE
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
