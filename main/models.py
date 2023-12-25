@@ -15,12 +15,29 @@ class Budget(models.Model):
         choices=CATEGORY_CHOICES,
         primary_key=True
     )
-    percentage = models.IntegerField(default=20, null=False)
+    percentage = models.IntegerField(
+        default=20,
+        null=False
+    )
 
 
-# class Expenses(models.Model):
-#     pass
-#
-#
+class Expenses(models.Model):
+    title = models.CharField(
+        max_length=100,
+        null=False,
+        unique=True,
+    )
+    value = models.IntegerField(
+        null=False
+    )
+    date = models.DateField(null=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    description = models.TextField()
+    category = models.ForeignKey(
+        Budget,
+        on_delete=models.DO_NOTHING
+    )
+
+
 # class Revenue(models.Model):
 #     pass
