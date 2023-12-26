@@ -1,7 +1,5 @@
 {% extends 'main/base.html' %}
 
-{% block title %}Add revenue{% endblock %}
-
 {% block content %}
 <form action="/revenue" method="post">
     {% csrf_token %}

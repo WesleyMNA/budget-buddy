@@ -1,9 +1,25 @@
 from django import forms
 from django.contrib.auth.models import User
 
+from main.models import Revenue, Expense
 
-class ExpenseForm(forms.Form):
-    pass
+
+class ExpenseForm(forms.ModelForm):
+    class Meta:
+        model = Expense
+        fields = [
+            'title',
+            'value',
+            'date',
+            'description',
+            'category',
+        ]
+
+    def save(self, user: User):
+        expense = super().save(commit=False)
+        expense.user = user
+        expense.save()
+        return expense
 
 
 class LoginForm(forms.Form):
@@ -18,8 +34,23 @@ class LoginForm(forms.Form):
     )
 
 
-class RevenueForm(forms.Form):
-    pass
+class RevenueForm(forms.ModelForm):
+    class Meta:
+        model = Revenue
+        fields = [
+            'title',
+            'value',
+            'date',
+            'description',
+            'category',
+        ]
+
+    def save(self, user: User):
+        expense = super().save(commit=False)
+        expense.user = user
+        expense.save()
+        return expense
+
 
 
 class SingUpForm(forms.Form):

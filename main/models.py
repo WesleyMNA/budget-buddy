@@ -33,7 +33,7 @@ class Expense(models.Model):
         null=False,
         unique=True,
     )
-    value = models.IntegerField(null=False)
+    value = models.FloatField(null=False)
     date = models.DateField(null=False)
     created_at = models.DateTimeField(auto_now_add=True)
     description = models.TextField()
@@ -56,7 +56,7 @@ class Revenue(models.Model):
         null=False,
         unique=True,
     )
-    value = models.IntegerField(null=False)
+    value = models.FloatField(null=False)
     date = models.DateField(null=False)
     created_at = models.DateTimeField(auto_now_add=True)
     description = models.TextField()

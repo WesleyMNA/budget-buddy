@@ -1,7 +1,5 @@
 {% extends 'main/base.html' %}
 
-{% block title %}Add expense{% endblock %}
-
 {% block content %}
 <form action="/expense" method="post">
     {% csrf_token %}

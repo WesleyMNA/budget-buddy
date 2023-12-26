@@ -15,6 +15,10 @@ def expense(request: WSGIRequest):
 
     if request.method == 'POST':
         form = ExpenseForm(request.POST)
+
+        if form.is_valid():
+            form.save(user)
+            return redirect('index')
     else:
         form = ExpenseForm()
 
