@@ -5,8 +5,44 @@ from django.contrib.auth.models import User
 from django.core.handlers.wsgi import WSGIRequest
 from django.shortcuts import render, redirect
 
-from .forms import LoginForm, SingUpForm
-from .models import Budget, Category
+from .forms import LoginForm, SingUpForm, ExpenseForm, RevenueForm
+from .models import Budget, Category, Expense, Revenue
+
+
+@login_required(login_url='/login')
+def expense(request: WSGIRequest):
+    user = request.user
+
+    if request.method == 'POST':
+        form = ExpenseForm(request.POST)
+    else:
+        form = ExpenseForm()
+
+    return render(
+        request,
+        'main/expense.html',
+        context={
+            'form': form
+        }
+    )
+
+
+@login_required(login_url='/login')
+def revenue(request: WSGIRequest):
+    user = request.user
+
+    if request.method == 'POST':
+        form = RevenueForm(request.POST)
+    else:
+        form = RevenueForm()
+
+    return render(
+        request,
+        'main/revenue.html',
+        context={
+            'form': form
+        }
+    )
 
 
 @login_required(login_url='/login')
@@ -22,11 +58,15 @@ def index(request: WSGIRequest):
 
         budgets = Budget.objects.filter(user=user)
 
+    expenses = Expense.objects.filter(user=user)
+    revenues = Revenue.objects.filter(user=user)
     return render(
         request,
         'main/index.html',
         context={
-            'budgets': budgets
+            'budgets': budgets,
+            'expenses': expenses,
+            'revenues': revenues,
         }
     )
 

@@ -2,6 +2,10 @@ from django import forms
 from django.contrib.auth.models import User
 
 
+class ExpenseForm(forms.Form):
+    pass
+
+
 class LoginForm(forms.Form):
     username = forms.CharField(
         label='Username',
@@ -12,6 +16,10 @@ class LoginForm(forms.Form):
         max_length=150,
         widget=forms.PasswordInput()
     )
+
+
+class RevenueForm(forms.Form):
+    pass
 
 
 class SingUpForm(forms.Form):

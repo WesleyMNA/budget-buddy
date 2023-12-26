@@ -1,0 +1,15 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Add revenue{% endblock %}
+
+{% block content %}
+<form action="/revenue" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Add">
+
+    <button>
+        <a href="{% url 'index' %}">Cancel</a>
+    </button>
+</form>
+{% endblock %}
