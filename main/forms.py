@@ -52,7 +52,6 @@ class RevenueForm(forms.ModelForm):
         return expense
 
 
-
 class SingUpForm(forms.Form):
     name = forms.CharField(
         label='Name',

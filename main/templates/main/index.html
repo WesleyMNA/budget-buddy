@@ -2,7 +2,10 @@
 
 {% block content %}
 <div>
-    <a href="{% url 'logout' %}">Logout</a>
+    <header>
+        <p>Hi {{ user.first_name }}!</p>
+        <a href="{% url 'logout' %}">Logout</a>
+    </header>
 
     <form>
         <h3>Budgets</h3>

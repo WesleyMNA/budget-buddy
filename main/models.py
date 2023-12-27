@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils.timezone import now
 
 
 class Category(models.Model):
@@ -16,6 +17,9 @@ class Category(models.Model):
         choices=CATEGORY_CHOICES,
         primary_key=True
     )
+
+    def __str__(self):
+        return self.get_category_display()
 
 
 class Budget(models.Model):
@@ -34,12 +38,16 @@ class Expense(models.Model):
         unique=True,
     )
     value = models.FloatField(null=False)
-    date = models.DateField(null=False)
+    date = models.DateField(
+        null=False,
+        default=now
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     description = models.TextField()
     category = models.ForeignKey(
         Category,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        default='F'
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
@@ -57,11 +65,15 @@ class Revenue(models.Model):
         unique=True,
     )
     value = models.FloatField(null=False)
-    date = models.DateField(null=False)
+    date = models.DateField(
+        null=False,
+        default=now
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     description = models.TextField()
     category = models.IntegerField(
         null=False,
-        choices=Category
+        choices=Category,
+        default=Category.WAGE
     )
     user = models.ForeignKey(User, on_delete=models.CASCADE)
