@@ -25,7 +25,8 @@ class ExpenseForm(forms.ModelForm):
 class LoginForm(forms.Form):
     username = forms.CharField(
         label='Username',
-        max_length=150
+        max_length=150,
+        widget=forms.TextInput(attrs={'class': 'form-input'})
     )
     password = forms.CharField(
         label='Password',
@@ -44,6 +45,9 @@ class RevenueForm(forms.ModelForm):
             'description',
             'category',
         ]
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-input'}),
+        }
 
     def save(self, user: User):
         expense = super().save(commit=False)
