@@ -3,6 +3,9 @@ from django.contrib.auth.models import User
 
 from main.models import Revenue, Expense
 
+FORM_INPUT_CLASS = 'form-input'
+RADIO_INPUT_CLASS = 'radio-input'
+
 
 class ExpenseForm(forms.ModelForm):
     class Meta:
@@ -14,6 +17,13 @@ class ExpenseForm(forms.ModelForm):
             'description',
             'category',
         ]
+        widgets = {
+            'title': forms.TextInput(attrs={'class': FORM_INPUT_CLASS}),
+            'value': forms.NumberInput(attrs={'class': FORM_INPUT_CLASS}),
+            'date': forms.SelectDateWidget(attrs={'class': FORM_INPUT_CLASS}),
+            'description': forms.Textarea(attrs={'class': FORM_INPUT_CLASS}),
+            'category': forms.RadioSelect(attrs={'class': RADIO_INPUT_CLASS}),
+        }
 
     def save(self, user: User):
         expense = super().save(commit=False)
@@ -26,12 +36,12 @@ class LoginForm(forms.Form):
     username = forms.CharField(
         label='Username',
         max_length=150,
-        widget=forms.TextInput(attrs={'class': 'form-input'})
+        widget=forms.TextInput(attrs={'class': FORM_INPUT_CLASS, 'id_for_label': 'Teste'})
     )
     password = forms.CharField(
         label='Password',
         max_length=150,
-        widget=forms.PasswordInput()
+        widget=forms.PasswordInput(attrs={'class': FORM_INPUT_CLASS})
     )
 
 
@@ -46,7 +56,11 @@ class RevenueForm(forms.ModelForm):
             'category',
         ]
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-input'}),
+            'title': forms.TextInput(attrs={'class': FORM_INPUT_CLASS}),
+            'value': forms.NumberInput(attrs={'class': FORM_INPUT_CLASS}),
+            'date': forms.SelectDateWidget(attrs={'class': FORM_INPUT_CLASS}),
+            'description': forms.Textarea(attrs={'class': FORM_INPUT_CLASS}),
+            'category': forms.RadioSelect(attrs={'class': RADIO_INPUT_CLASS}),
         }
 
     def save(self, user: User):
@@ -59,25 +73,28 @@ class RevenueForm(forms.ModelForm):
 class SingUpForm(forms.Form):
     name = forms.CharField(
         label='Name',
-        max_length=150
+        max_length=150,
+        widget=forms.TextInput(attrs={'class': FORM_INPUT_CLASS})
     )
     username = forms.CharField(
         label='Username',
-        max_length=150
+        max_length=150,
+        widget=forms.TextInput(attrs={'class': FORM_INPUT_CLASS})
     )
     email = forms.EmailField(
         label='Email',
-        max_length=254
+        max_length=254,
+        widget=forms.TextInput(attrs={'class': FORM_INPUT_CLASS})
     )
     password = forms.CharField(
         label='Password',
         max_length=150,
-        widget=forms.PasswordInput()
+        widget=forms.PasswordInput(attrs={'class': FORM_INPUT_CLASS})
     )
     confirm_password = forms.CharField(
         label='Confirm Password',
         max_length=150,
-        widget=forms.PasswordInput()
+        widget=forms.PasswordInput(attrs={'class': FORM_INPUT_CLASS})
     )
 
     def clean_username(self):

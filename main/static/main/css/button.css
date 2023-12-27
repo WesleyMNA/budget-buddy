@@ -1,0 +1,31 @@
+.button {
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 1px solid #FFF;
+}
+
+.button-link {
+    padding: 10px 20px;
+    text-align: center;
+    background-color: #FFF;
+    color: black;
+    border: 1px solid #FFF;
+    border-radius: 5px;
+}
+
+.confirm-button {
+
+}
+
+.router-button {
+    padding: 0px;
+
+    a {
+        display: block;
+        margin: 0px;
+        padding: 0px;
+        height: 100%;
+        width: 100%;
+    }
+}

@@ -4,7 +4,9 @@
 <div>
     <header>
         <p>Hi {{ user.first_name }}!</p>
-        <a href="{% url 'logout' %}">Logout</a>
+        <button>
+            <a href="{% url 'logout' %}">Logout</a>
+        </button>
     </header>
 
     <form>

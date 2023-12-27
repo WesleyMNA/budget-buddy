@@ -1,14 +1,18 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-<form id="login-form" action="/login" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <div>
-        <input type="submit" value="Enter">
-        <button>
-            <a href="{% url 'singup' %}">Sing Up</a>
-        </button>
+<div id="login-card" class="card">
+    <div id="login-title">
+        <h2>Welcome to Budget Buddy!</h2>
+        <p>Manage your finances with ease.</p>
     </div>
-</form>
+    <div>
+        <form action="/login" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input id="login-button" class="confirm-button button" type="submit" value="Enter">
+            <p id="sing-up-label">Don't have an account? <a href="{% url 'singup' %}">Sing Up</a></p>
+        </form>
+    </div>
+</div>
 {% endblock %}
