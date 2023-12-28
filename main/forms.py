@@ -59,7 +59,10 @@ class RevenueForm(forms.ModelForm):
             'title': forms.TextInput(attrs={'class': FORM_INPUT_CLASS}),
             'value': forms.NumberInput(attrs={'class': FORM_INPUT_CLASS}),
             'date': forms.SelectDateWidget(attrs={'class': FORM_INPUT_CLASS}),
-            'description': forms.Textarea(attrs={'class': FORM_INPUT_CLASS}),
+            'description': forms.Textarea(attrs={
+                'class': FORM_INPUT_CLASS,
+                'rows': 4,
+            }),
             'category': forms.RadioSelect(attrs={'class': RADIO_INPUT_CLASS}),
         }
 

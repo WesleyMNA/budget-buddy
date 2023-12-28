@@ -5,9 +5,9 @@ label {
 
 .form-input {
     border: none;
+    border-radius: 5px;
     padding: .8rem;
     margin: .3rem;
     text-align: center;
     font-size: 1rem;
-    width: 20vw;
 }

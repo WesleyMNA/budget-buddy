@@ -1,15 +1,20 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-<div id="login-card" class="card">
-    <div id="login-title">
+<div class="card">
+    <header id="login-title">
         <h2>Welcome to Budget Buddy!</h2>
         <p>Manage your finances with ease.</p>
-    </div>
+    </header>
     <div>
         <form action="/login" method="post">
             {% csrf_token %}
-            {{ form }}
+            {% for field in form.visible_fields %}
+                <div class="form-field">
+                    {{ field.label_tag }}
+                    {{ field }}
+                </div>
+            {% endfor %}
             <input id="login-button" class="confirm-button button" type="submit" value="Enter">
             <p id="sing-up-label">Don't have an account? <a href="{% url 'singup' %}">Sing Up</a></p>
         </form>
