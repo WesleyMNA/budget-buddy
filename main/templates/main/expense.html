@@ -1,13 +1,45 @@
 {% extends 'main/base.html' %}
 
 {% block content %}
-<form action="/expense" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Add">
+<div class="header-card card">
+    <header class="form-header">
+        <h2>Add new expenses</h2>
+    </header>
+    <form action="/expense" method="post">
+        {% csrf_token %}
+        <div class="two-columns-input">
+            <div class="form-field">
+                {{ form.title.label_tag }}
+                {{ form.title }}
+            </div>
+            <div class="form-field">
+                {{ form.value.label_tag }}
+                {{ form.value }}
+            </div>
+        </div>
+        <div class="two-columns-input">
+            <div class="form-field">
+                {{ form.date.label_tag }}
+                <div class="form-date-selector">
+                    {{ form.date }}
+                </div>
+            </div>
+            <div class="form-field">
+                {{ form.category.label_tag }}
+                <div class="form-option-selector">
+                    {{ form.category }}
+                </div>
+            </div>
+        </div>
+        <div class="form-field">
+            {{ form.description.label_tag }}
+            {{ form.description }}
+        </div>
 
-    <button>
-        <a href="{% url 'index' %}">Cancel</a>
-    </button>
-</form>
+        <div class="form-buttons">
+            <input type="submit" value="Add">
+            <a href="{% url 'index' %}" class="button-link cancel-button">Cancel</a>
+        </div>
+    </form>
+</div>
 {% endblock %}

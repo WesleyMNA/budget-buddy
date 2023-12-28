@@ -27,6 +27,13 @@
     }
 }
 
+.form-header {
+    h2 {
+        font-size: 20px;
+        text-transform: uppercase;
+    }
+}
+
 .form-option-selector {
     div {
         display: flex;

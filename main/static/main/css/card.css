@@ -6,3 +6,8 @@
     flex-direction: column;
     gap: 2rem;
 }
+
+.header-card {
+    margin: 1rem 2rem 1rem 2rem;
+    padding: 2rem;
+}
