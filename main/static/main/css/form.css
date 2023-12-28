@@ -1,8 +1,41 @@
+.form-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 1rem;
+
+    a, input {
+        width: 15%;
+    }
+}
+
+.form-date-selector {
+    display: flex;
+    justify-content: space-around;
+
+    select {
+        flex-grow: 1;
+    }
+}
+
 .form-field {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
 
     label {
         margin-top: 1rem;
     }
+}
+
+.form-option-selector {
+    div {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+}
+
+.two-columns-input {
+    display: flex;
+    justify-content: space-between;
 }

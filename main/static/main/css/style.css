@@ -5,8 +5,13 @@
 @import url('form.css');
 @import url('input.css');
 @import url('login.css');
+@import url('revenue.css');
 
 body {
     background-color: var(--primary-color);
     color: var(--text-color);
+}
+
+h1, h2, h3 {
+    font-weight: bold;
 }

@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from main.models import Revenue, Expense
 
 FORM_INPUT_CLASS = 'form-input'
+FORM_TEXTAREA_CLASS = 'form-textarea'
 RADIO_INPUT_CLASS = 'radio-input'
 
 
@@ -60,7 +61,7 @@ class RevenueForm(forms.ModelForm):
             'value': forms.NumberInput(attrs={'class': FORM_INPUT_CLASS}),
             'date': forms.SelectDateWidget(attrs={'class': FORM_INPUT_CLASS}),
             'description': forms.Textarea(attrs={
-                'class': FORM_INPUT_CLASS,
+                'class': f'{FORM_INPUT_CLASS} {FORM_TEXTAREA_CLASS}',
                 'rows': 4,
             }),
             'category': forms.RadioSelect(attrs={'class': RADIO_INPUT_CLASS}),

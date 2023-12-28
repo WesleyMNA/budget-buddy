@@ -11,3 +11,7 @@ label {
     text-align: center;
     font-size: 1rem;
 }
+
+.form-textarea {
+    text-align: left;
+}

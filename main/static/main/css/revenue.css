@@ -1,0 +1,11 @@
+#revenue-card {
+    margin: 3rem;
+    padding: 2rem;
+}
+
+#revenue-header {
+    h2 {
+        font-size: 20px;
+        text-transform: uppercase;
+    }
+}
