@@ -13,6 +13,12 @@
 </head>
 <body>
 <main>
+    {% if user.is_authenticated %}
+    <header id="top-bar">
+        <a href="{% url 'index' %}">Hi {{ user.first_name }}!</a>
+        <a href="{% url 'logout' %}" class="button-link cancel-button">Logout</a>
+    </header>
+    {% endif %}
     {% block content %}{% endblock %}
 </main>
 </body>

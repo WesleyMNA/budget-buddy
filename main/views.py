@@ -75,7 +75,6 @@ def index(request: WSGIRequest):
             'budgets': budgets,
             'expenses': expenses,
             'revenues': revenues,
-            'user': user
         }
     )
 
