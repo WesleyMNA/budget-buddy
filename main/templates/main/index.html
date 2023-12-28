@@ -2,25 +2,24 @@
 
 {% block content %}
 <div>
-    <form>
+    <form id="budget-card" class="card">
         <h3>Budgets</h3>
 
-        {% for budget in budgets %}
         <div>
-            <p>{{ budget.category.get_category_display }}</p>
-            <p>{{ budget.percentage }}</p>
+            {% for budget in budgets %}
+            <div>
+                <p>{{ budget.category.get_category_display }}</p>
+                <p>{{ budget.percentage }}</p>
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </form>
 
-    <div>
-        <div>
-            <div>
+    <div id="transactions-row">
+        <div class="transactions-card card transactions-card-right">
+            <div class="transactions-header">
                 <h3>Revenues</h3>
-
-                <button>
-                    <a href="{% url 'revenue' %}">Add</a>
-                </button>
+                <a href="{% url 'revenue' %}" class="button-link">Add</a>
             </div>
 
             {% for revenue in revenues %}
@@ -34,13 +33,10 @@
             {% endfor %}
         </div>
 
-        <div>
-            <div>
+        <div class="transactions-card card transactions-card-left">
+            <div class="transactions-header">
                 <h3>Expenses</h3>
-
-                <button>
-                    <a href="{% url 'expense' %}">Add</a>
-                </button>
+                <a href="{% url 'expense' %}" class="button-link">Add</a>
             </div>
 
             {% for expense in expenses %}

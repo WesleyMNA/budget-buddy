@@ -1,0 +1,34 @@
+#budget-card {
+    padding: 1rem;
+    margin: 1rem;
+
+    div {
+        display: flex;
+    }
+}
+
+#transactions-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.transactions-card {
+    padding: 1rem;
+    flex-grow: 1
+}
+
+.transactions-card-right {
+    margin-left: 1rem;
+    margin-right: .5rem;
+}
+
+.transactions-card-left {
+    margin-right: 1rem;
+    margin-left: .5rem;
+}
+
+.transactions-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
