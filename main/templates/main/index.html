@@ -2,52 +2,66 @@
 
 {% block content %}
 <div>
-    <form id="budget-card" class="card">
-        <h3>Budgets</h3>
+    <div id="budget-card" class="card">
+        <div class="index-header">
+            <h3>Budgets</h3>
+            <a href="{% url 'revenue' %}" class="button-link">Update</a>
+        </div>
 
-        <div>
+        <div id="budgets">
             {% for budget in budgets %}
-            <div>
-                <p>{{ budget.category.get_category_display }}</p>
-                <p>{{ budget.percentage }}</p>
+            <div class="budgets-data">
+                <p class="budget-title">{{ budget.category.get_category_display }}</p>
+                <p>{{ budget.percentage }}%</p>
             </div>
             {% endfor %}
         </div>
-    </form>
+    </div>
 
     <div id="transactions-row">
         <div class="transactions-card card transactions-card-right">
-            <div class="transactions-header">
+            <div class="index-header">
                 <h3>Revenues</h3>
                 <a href="{% url 'revenue' %}" class="button-link">Add</a>
             </div>
 
-            {% for revenue in revenues %}
-            <div>
-                <p>{{ revenue.title }}</p>
-                <p>{{ revenue.value }}</p>
-                <p>{{ revenue.date }}</p>
-                <p>{{ revenue.description }}</p>
-                <p>{{ revenue.get_category_display }}</p>
-            </div>
-            {% endfor %}
+            <ul>
+                {% for revenue in revenues %}
+                <li class="transaction-item">
+                    <div>
+                        <h5>{{ revenue.title }}</h5>
+                        <p>{{ revenue.date }}</p>
+
+                    </div>
+                    <div>
+                        <p>R${{ revenue.value }}</p>
+                        <p>{{ revenue.get_category_display }}</p>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
         </div>
 
         <div class="transactions-card card transactions-card-left">
-            <div class="transactions-header">
+            <div class="index-header">
                 <h3>Expenses</h3>
                 <a href="{% url 'expense' %}" class="button-link">Add</a>
             </div>
 
-            {% for expense in expenses %}
-            <div>
-                <p>{{ expense.title }}</p>
-                <p>{{ expense.value }}</p>
-                <p>{{ expense.date }}</p>
-                <p>{{ expense.description }}</p>
-                <p>{{ expense.get_category_display }}</p>
-            </div>
-            {% endfor %}
+            <ul>
+                {% for expense in expenses %}
+                <li class="transaction-item">
+                    <div>
+                        <h5>{{ expense.title }}</h5>
+                        <p>{{ expense.date }}</p>
+                    </div>
+                    <div>
+                        <p>R${{ expense.value }}</p>
+                        <p>{{ expense.get_category_display }}</p>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
 </div>

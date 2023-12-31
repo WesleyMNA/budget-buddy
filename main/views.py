@@ -10,6 +10,11 @@ from .models import Budget, Category, Expense, Revenue
 
 
 @login_required(login_url='/login')
+def budget(request: WSGIRequest):
+    pass
+
+
+@login_required(login_url='/login')
 def expense(request: WSGIRequest):
     user = request.user
 
