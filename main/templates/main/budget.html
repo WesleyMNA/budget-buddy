@@ -29,6 +29,12 @@
             {{ form.pleasures }}
         </div>
 
+        {% if form.errors %}
+        <div class="form-field">
+            <p class="error">{{ form.errors }}</p>
+        </div>
+        {% endif %}
+
         <div class="form-buttons">
             <input type="submit" value="Add">
             <a href="{% url 'index' %}" class="button-link cancel-button">Cancel</a>

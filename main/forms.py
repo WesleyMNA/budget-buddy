@@ -30,6 +30,20 @@ class BudgetForm(forms.Form):
         widget=forms.NumberInput(attrs={'class': FORM_INPUT_CLASS})
     )
 
+    def clean(self):
+        cleaned_data = super().clean()
+        fields = [
+            'fixed',
+            'goal',
+            'investment',
+            'knowledge',
+            'pleasures',
+        ]
+        percentage_sum = sum(cleaned_data.get(field) for field in fields)
+
+        if percentage_sum != 100:
+            raise forms.ValidationError('percentages do not sum up to 100%')
+
 
 class ExpenseForm(forms.ModelForm):
     class Meta:
