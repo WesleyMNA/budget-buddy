@@ -8,6 +8,29 @@ FORM_TEXTAREA_CLASS = 'form-textarea'
 RADIO_INPUT_CLASS = 'radio-input'
 
 
+class BudgetForm(forms.Form):
+    fixed = forms.IntegerField(
+        label='Fixed',
+        widget=forms.NumberInput(attrs={'class': FORM_INPUT_CLASS})
+    )
+    goal = forms.IntegerField(
+        label='Goals',
+        widget=forms.NumberInput(attrs={'class': FORM_INPUT_CLASS})
+    )
+    investment = forms.IntegerField(
+        label='Investment',
+        widget=forms.NumberInput(attrs={'class': FORM_INPUT_CLASS})
+    )
+    knowledge = forms.IntegerField(
+        label='Knowledge',
+        widget=forms.NumberInput(attrs={'class': FORM_INPUT_CLASS})
+    )
+    pleasures = forms.IntegerField(
+        label='Pleasures',
+        widget=forms.NumberInput(attrs={'class': FORM_INPUT_CLASS})
+    )
+
+
 class ExpenseForm(forms.ModelForm):
     class Meta:
         model = Expense

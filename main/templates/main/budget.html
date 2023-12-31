@@ -1,0 +1,38 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<div class="header-card card">
+    <header class="form-header">
+        <h2>Update budgets</h2>
+    </header>
+    <form action="/budget" method="post">
+        {% csrf_token %}
+
+        <div class="form-field">
+            {{ form.fixed.label_tag }}
+            {{ form.fixed }}
+        </div>
+        <div class="form-field">
+            {{ form.goal.label_tag }}
+            {{ form.goal }}
+        </div>
+        <div class="form-field">
+            {{ form.investment.label_tag }}
+            {{ form.investment }}
+        </div>
+        <div class="form-field">
+            {{ form.knowledge.label_tag }}
+            {{ form.knowledge }}
+        </div>
+        <div class="form-field">
+            {{ form.pleasures.label_tag }}
+            {{ form.pleasures }}
+        </div>
+
+        <div class="form-buttons">
+            <input type="submit" value="Add">
+            <a href="{% url 'index' %}" class="button-link cancel-button">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

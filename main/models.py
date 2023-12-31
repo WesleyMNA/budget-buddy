@@ -30,6 +30,9 @@ class Budget(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    def __repr__(self):
+        return f'Budget (category={self.category}, percentage={self.percentage}, user={self.user.username})'
+
 
 class Expense(models.Model):
     title = models.CharField(

@@ -5,13 +5,46 @@ from django.contrib.auth.models import User
 from django.core.handlers.wsgi import WSGIRequest
 from django.shortcuts import render, redirect
 
-from .forms import LoginForm, SingUpForm, ExpenseForm, RevenueForm
+from .forms import LoginForm, SingUpForm, ExpenseForm, RevenueForm, BudgetForm
 from .models import Budget, Category, Expense, Revenue
 
 
 @login_required(login_url='/login')
 def budget(request: WSGIRequest):
-    pass
+    user = request.user
+    budgets = Budget.objects.filter(user=user)
+
+    if request.method == 'POST':
+        form = BudgetForm(request.POST)
+
+        if form.is_valid():
+            for b in budgets:
+                match b.category.category:
+                    case 'F':
+                        b.percentage = form.cleaned_data['fixed']
+                    case 'G':
+                        b.percentage = form.cleaned_data['goal']
+                    case 'I':
+                        b.percentage = form.cleaned_data['investment']
+                    case 'K':
+                        b.percentage = form.cleaned_data['knowledge']
+                    case 'P':
+                        b.percentage = form.cleaned_data['pleasures']
+
+                b.save()
+
+            return redirect('index')
+    else:
+        data = {b.category.get_category_display().lower(): b.percentage for b in budgets}
+        form = BudgetForm(initial=data)
+
+    return render(
+        request,
+        'main/budget.html',
+        context={
+            'form': form
+        }
+    )
 
 
 @login_required(login_url='/login')
