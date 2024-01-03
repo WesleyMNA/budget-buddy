@@ -1,8 +1,12 @@
+from calendar import monthrange
+from datetime import date
+
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 from django.core.handlers.wsgi import WSGIRequest
+from django.db.models import Sum
 from django.shortcuts import render, redirect
 
 from .forms import LoginForm, SingUpForm, ExpenseForm, RevenueForm, BudgetForm
@@ -95,6 +99,9 @@ def revenue(request: WSGIRequest):
 def index(request: WSGIRequest):
     user = request.user
     budgets = Budget.objects.filter(user=user)
+    initial_date = date.today().replace(day=1)
+    day = monthrange(initial_date.year, initial_date.month)[1]
+    final_date = initial_date.replace(day=day)
 
     if len(budgets) == 0:
         categories = Category.objects.all()
@@ -104,8 +111,22 @@ def index(request: WSGIRequest):
 
         budgets = Budget.objects.filter(user=user)
 
-    expenses = Expense.objects.filter(user=user)
-    revenues = Revenue.objects.filter(user=user)
+    expenses = Expense.objects.filter(user=user, date__range=(initial_date, final_date))
+    expenses_by_category = (Expense.objects
+                            .filter(user=user, date__range=(initial_date, final_date))
+                            .values('category')
+                            .annotate(sum=Sum('value')))
+
+    for e in expenses_by_category:
+        e['category'] = (e['category'].replace('F', 'Fixed')
+                         .replace('G', 'Goal')
+                         .replace('I', 'Investment')
+                         .replace('K', 'Knowledge')
+                         .replace('P', 'Pleasures'))
+
+    total_spent = sum(e.value for e in expenses)
+    revenues = Revenue.objects.filter(user=user, date__range=(initial_date, final_date))
+    total_earned = sum(r.value for r in revenues)
     return render(
         request,
         'main/index.html',
@@ -113,6 +134,9 @@ def index(request: WSGIRequest):
             'budgets': budgets,
             'expenses': expenses,
             'revenues': revenues,
+            'expenses_by_category': expenses_by_category,
+            'total_spent': total_spent,
+            'total_earned': total_earned
         }
     )
 

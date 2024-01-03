@@ -2,23 +2,43 @@
 
 {% block content %}
 <div>
-    <div id="budget-card" class="card">
-        <div class="index-header">
-            <h3>Budgets</h3>
-            <a href="{% url 'budget' %}" class="button-link">Update</a>
+    <div class="index-row">
+        <div id="earned-spent" class="card transactions-card-right">
+            <h3>Earned / Spent</h3>
+            <div id="earned-spent-data">
+                <div id="totals">
+                    <p>Total Earned: R${{ total_earned }}</p>
+                    <p>Total Spent: R$-{{ total_spent }}</p>
+                </div>
+                <div>
+                    {% for expense in expenses_by_category %}
+                    <div id="expense-by-category">
+                        <p>{{ expense.category }}</p>
+                        <p>{{ expense.sum }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
 
-        <div id="budgets">
-            {% for budget in budgets %}
-            <div class="budgets-data">
-                <p class="budget-title">{{ budget.category.get_category_display }}</p>
-                <p>{{ budget.percentage }}%</p>
+        <div id="budget-card" class="card">
+            <div class="index-header">
+                <h3>Budgets</h3>
+                <a href="{% url 'budget' %}" class="button-link">Update</a>
             </div>
-            {% endfor %}
+
+            <div id="budgets">
+                {% for budget in budgets %}
+                <div class="budgets-data">
+                    <p class="budget-title">{{ budget.category.get_category_display }}</p>
+                    <p>{{ budget.percentage }}%</p>
+                </div>
+                {% endfor %}
+            </div>
         </div>
     </div>
 
-    <div id="transactions-row">
+    <div class="index-row">
         <div class="transactions-card card transactions-card-right">
             <div class="index-header">
                 <h3>Revenues</h3>
@@ -57,7 +77,7 @@
                     </div>
                     <div>
                         <p>R${{ expense.value }}</p>
-                        <p>{{ expense.get_category_display }}</p>
+                        <p>{{ expense.category.get_category_display }}</p>
                     </div>
                 </li>
                 {% endfor %}

@@ -1,22 +1,39 @@
 #budget-card {
     padding: 1rem;
-    margin: 1rem;
+    margin: 1rem 1rem 1rem .5rem;
 
-    #budgets {
+    .budgets-data {
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
+        gap: 10px;
+        align-items: center;
 
-        .budgets-data {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            align-items: center;
-
-            .budget-title {
-                font-weight: bold;
-                text-transform: uppercase;
-            }
+        .budget-title {
+            font-weight: bold;
+            text-transform: uppercase;
         }
+    }
+}
+
+#earned-spent {
+    padding: 1rem;
+    margin: 1rem .5rem 1rem 1rem;
+    flex-grow: 1;
+
+    #earned-spent-data {
+        display: flex;
+    }
+
+    #expense-by-category {
+        display: flex;
+        gap: 2rem;
+    }
+
+    #totals {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        margin-right: 10rem;
     }
 }
 
@@ -26,14 +43,14 @@
     align-items: center;
 }
 
-#transactions-row {
+.index-row {
     display: flex;
     justify-content: space-between;
 }
 
 .transactions-card {
     padding: 1rem;
-    flex-grow: 1
+    flex-grow: 1;
 }
 
 .transactions-card-right {
